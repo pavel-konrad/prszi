@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Czech Card Game – Prszi</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+	<div id="intro-screen" role="dialog" aria-modal="true" aria-labelledby="intro-title" tabindex="-1">
+		<div class="container-intro">
+		  <h1 id="intro-title">Welcome</h1>
+	  
+
+	  
+		  <label for="intro-deck-select">Select card deck:</label>
+		  <select id="intro-deck-select" aria-describedby="deck-desc">
+			<option value="standard" selected>Adam Briza Pack</option>
+			
+		  </select>
+		  <p id="deck-desc" class="sr-only">Choose which deck of cards to use in the game.</p>
+	  
+		  <button id="intro-start-game" class="button">Start Game</button>
+	  
+		  <section id="game-info" aria-label="Game rules and history" tabindex="0">
+			<h2>Rules and History of the Czech Card Game Prší</h2>
+			<p>
+			  Prší is a traditional Czech card game played with a 32-card deck. The game involves players trying to get rid of all their cards by matching the suit or rank of the top card on the discard pile. Special cards allow players to skip opponents, reverse the play order, or force opponents to draw extra cards.
+			</p>
+			<p>
+			  The game has a long history in Czech culture and is a popular pastime in social gatherings and family events. It is similar to other shedding card games such as Uno or Mau Mau.
+			</p>
+		  </section>
+		</div>
+	  </div>
+	  
+  <a href="#" id="exit-game" class="button">Exit Game</a>
+  <a href="#" id="settings-button" class="button">⚙️ Settings</a>
+
+  <div id="settings-overlay" class="hidden" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+    <div id="settings-panel">
+      <h2 id="settings-title">Settings</h2>
+
+      <label for="volume-range">Volume:</label>
+      <input type="range" id="volume-range" min="0" max="1" step="0.01" />
+
+
+      <button id="mute-toggle" class="button">Mute</button>
+      <button id="close-settings" class="button">Close</button>
+    </div>
+  </div>
+
+  <main id="app">
+
+
+    <section id="board">
+      <div class="top-row" role="region" aria-live="polite" aria-label="Game status and decks">
+        <div id="deck" class="deck">Draw Deck</div>
+        <div id="discard-pile" class="discard">Discard Pile</div>
+        <div id="game-state" class="game-state">Loading...</div>
+      </div>
+
+      <section id="hands">
+        <div class="board-grid" role="region" aria-label="Players' hands">
+
+          <div id="enemy1-cell" class="player-cell enemy-cell">
+            <div id="enemy1-hand" class="hand enemy-hand"></div>
+          </div>
+
+          <div id="enemy2-cell" class="player-cell enemy-cell">
+            <div id="enemy2-hand" class="hand enemy-hand"></div>
+          </div>
+
+          <div id="enemy3-cell" class="player-cell enemy-cell">
+            <div id="enemy3-hand" class="hand enemy-hand"></div>
+          </div>
+
+          <div id="player-cell" class="player-cell player-cell--main">
+            <div id="player-hand" class="hand player-hand" aria-live="polite"></div>
+          </div>
+
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script type="module" src="js/script.js"></script>
+  <script src="js/menu.js" defer></script>
+</body>
+</html>

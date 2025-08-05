@@ -1,0 +1,650 @@
+:root {
+	/* Barvy */
+	--color-bg:  #2e8b57;
+	--color-text: white;
+	--color-button-bg: #373737;
+	--color-button-bg-hover: #256b43;
+	--color-settings-bg: #fff;
+	--color-settings-text: #222;
+	--color-settings-border: #ccc;
+	--color-player-bg: #d4edda;
+	--color-enemy1-bg: transparent;
+	--color-enemy2-bg: transparent;
+	--color-enemy3-bg: transparent;
+	--color-error: #f44336;
+	--color-success: #4caf50;
+	--color-info: #ddd;
+	--color-card-bg: white;
+	--color-card-text: black;
+  
+	/* Velikosti a mezery */
+	--border-radius: 0.5rem;
+	--border-radius-card: 10px;
+	--padding-button-vertical: 0.7rem;
+	--padding-button-horizontal: 2rem;
+	--padding-settings-panel: 20px;
+	--padding-cell: 10px;
+	--gap-main: 1rem;
+	--gap-cards: 8px;
+	--font-family: 'Inter', Arial, sans-serif;
+	--font-family-settings: Arial, sans-serif;
+  
+	/* Velikosti karet */
+	--card-width-player: 100px;
+	--card-height-player: 140px;
+	--card-width-enemy: 70px;
+	--card-height-enemy: 100px;
+  
+	/* Max šířky */
+	--max-width-cells: 500px;
+	--width-cells: 500px;
+  }
+  
+  *,
+  *::before,
+  *::after {
+	box-sizing: border-box;
+  }
+  
+  html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	font-family: var(--font-family);
+	background: var(--color-bg);
+	color: var(--color-text);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  }
+  body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background: #2e8b57; /* pěkné zelené pozadí pro celou stránku */
+	color: #fff;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+  }
+  
+  label {
+	display: block;
+	margin-bottom: 0.4rem;
+	font-weight: 600;
+	font-size: 1rem;
+	text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
+  
+  select, button {
+	width: 100%;
+	padding: 0.55rem 1rem;
+	font-size: 1rem;
+	border-radius: 12px;
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.25s ease, box-shadow 0.25s ease;
+	user-select: none;
+	box-shadow: inset 0 0 7px rgba(255 255 255 / 0.2);
+	background-color: rgba(255 255 255 / 0.15);
+	color: #fff;
+	text-shadow: 0 1px 1px rgba(0,0,0,0.15);
+	appearance: none; /* odstraní výchozí šipku na selectu */
+	background-image:
+	  linear-gradient(45deg, transparent 50%, #fff 50%),
+	  linear-gradient(135deg, #fff 50%, transparent 50%);
+	background-position:
+	  calc(100% - 20px) calc(1em + 2px),
+	  calc(100% - 15px) calc(1em + 2px);
+	background-size: 5px 5px;
+	background-repeat: no-repeat;
+  }
+  
+  select:hover, select:focus,
+  button:hover, button:focus {
+	background-color: rgba(255 255 255 / 0.35);
+	box-shadow: inset 0 0 10px rgba(255 255 255 / 0.4);
+	outline: none;
+  }
+  
+  button {
+	font-weight: 700;
+	background-color: #ffd166;
+	color: #256742;
+	box-shadow: 0 6px 14px rgba(255 209 102 / 0.7);
+	margin-top: 1.6rem;
+	transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+	text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  }
+  
+  button:hover, button:focus {
+	background-color: #ffca3a;
+	box-shadow: 0 8px 18px rgba(255 202 58 / 0.9);
+	transform: translateY(-2px);
+  }
+  
+  button:active {
+	transform: translateY(0);
+	box-shadow: 0 4px 10px rgba(255 202 58 / 0.7);
+  }
+  
+  /* Tlačítka */
+  .button {
+	background-color: var(--color-button-bg);
+	color: var(--color-text);
+	border: none;
+	border-radius: var(--border-radius);
+	padding: var(--padding-button-vertical) var(--padding-button-horizontal);
+	font-size: 1.2rem;
+	cursor: pointer;
+	text-decoration: none;
+	display: inline-block;
+	user-select: none;
+	transition: background-color 0.3s ease;
+  }
+  .button:hover,
+  .button:focus {
+	background-color: var(--color-button-bg-hover);
+	outline: none;
+  }
+  
+  /* Úvodní obrazovka */
+  #intro-screen {
+	position: fixed;
+	top: 0; left: 0; right: 0; bottom: 0;
+	background: var(--color-bg);
+	color: var(--color-text);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	z-index: 2000;
+	gap: var(--gap-main);
+  }
+  
+  #intro-screen h1 {
+	margin-bottom: var(--gap-main);
+  }
+  
+  #intro-screen label {
+	margin-top: var(--gap-main);
+	font-weight: 600;
+  }
+  
+  #intro-screen select {
+	font-size: 1rem;
+	padding: 0.3rem 0.5rem;
+	border-radius: 0.25rem;
+	border: none;
+  }
+  
+  /* Exit a nastavení - tlačítka v rohu */
+  #exit-game, #settings-button {
+	position: fixed;
+	right: 10px;
+
+	cursor: pointer;
+	text-decoration: none;
+	transition: background-color 0.3s ease;
+	z-index: 10000;
+  }
+  
+  #exit-game {
+	top: 70px;
+  }
+  
+  #settings-button {
+	top: 10px;
+  }
+  
+  #exit-game:hover, #settings-button:hover,
+  #exit-game:focus, #settings-button:focus {
+	background-color: var(--color-button-bg-hover);
+	outline: none;
+  }
+  
+  /* Nastavení - overlay */
+  #settings-overlay {
+	position: fixed;
+	top: 0; left: 0; right: 0; bottom: 0;
+	background: var(--color-bg);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 10000;
+  }
+  
+  #settings-overlay.hidden {
+	display: none;
+  }
+  
+  #settings-panel {
+	background: var(--color-settings-bg);
+	color: var(--color-settings-text);
+	border-radius: 8px;
+	padding: var(--padding-settings-panel);
+	width: 320px;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+	font-family: var(--font-family-settings);
+  }
+  
+  #settings-panel h2 {
+	margin-top: 0;
+  }
+  
+  #settings-panel label {
+	margin-top: var(--gap-main);
+	font-weight: 600;
+	display: block;
+  }
+  
+  #settings-panel select,
+  #settings-panel input[type="range"] {
+	width: 100%;
+	margin-top: 0.3rem;
+	padding: 0.3rem 0.5rem;
+	border-radius: 0.25rem;
+	border: 1px solid var(--color-settings-border);
+	font-size: 1rem;
+  }
+  
+  #settings-panel button {
+	margin-top: 1.5rem;
+	width: 100%;
+	padding: var(--padding-button-vertical) 1rem;
+	background-color: var(--color-button-bg);
+	color: var(--color-text);
+	border: none;
+	border-radius: var(--border-radius);
+	font-weight: 700;
+	cursor: pointer;
+	user-select: none;
+	transition: background-color 0.3s ease;
+  }
+  
+  #settings-panel button:hover,
+  #settings-panel button:focus {
+	background-color: var(--color-button-bg-hover);
+	outline: none;
+  }
+  
+  /* Hlavní aplikace */
+  #app {
+	width: 100%;
+	padding: 20px;
+	box-sizing: border-box;
+	text-align: center;
+  }
+  
+  header h1 {
+	margin-bottom: var(--gap-main);
+  }
+  
+  /* Deska + ruky */
+  #board {
+	display: flex;
+	flex-direction: column;
+	gap: var(--gap-main);
+  }
+  
+  .top-row {
+	display: flex;
+	gap: 20px;
+	align-items: center;
+	margin-bottom: 15px;
+  }
+  
+  .deck, .discard {
+	flex: 0 0 150px;
+	height: 200px;
+	padding: 1.5rem;
+	background: linear-gradient(180deg, #fff, #eee);
+	border-radius: 14px;
+	box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: 700;
+	color: #000;
+	user-select: none;
+	cursor: pointer;
+	transition: box-shadow 0.3s ease;
+  }
+  
+  .deck:hover, .discard:hover,
+  .deck:focus, .discard:focus {
+	box-shadow: 0 14px 40px rgba(0,0,0,0.4);
+	outline: none;
+  }
+  
+  .game-state {
+	flex-grow: 1;
+	font-weight: bold;
+	color: var(--color-text);
+	user-select: none;
+	text-align: center;
+  }
+  
+  /* Ruky hráčů */
+  #hands {
+	display: flex;
+	justify-content: center;
+  }
+  
+  /* Grid layout rukou */
+  .board-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: repeat(3, 1fr);
+	gap: 10px;
+	user-select: none;
+  }
+  
+  /* Player vlevo přes 2 řádky */
+  #player-cell {
+	grid-column: 1 / 2;
+	grid-row: 1 / 4;
+	background-color: var(--color-player-bg);
+	border-radius: 8px;
+	padding: var(--padding-cell);
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	flex-direction: row;
+	gap: var(--gap-cards);
+  }
+  
+  /* Enemy vpravo, každý na vlastním řádku */
+  #enemy1-cell {
+	grid-column: 2 / 3;
+	grid-row: 1 / 2;
+	background-color: var(--color-enemy1-bg);
+	border-radius: 8px;
+	padding: var(--padding-cell);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow-x: auto;
+  }
+  
+  #enemy2-cell {
+	grid-column: 2 / 3;
+	grid-row: 2 / 3;
+	background-color: var(--color-enemy2-bg);
+	border-radius: 8px;
+	padding: var(--padding-cell);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow-x: auto;
+  }
+  
+  #enemy3-cell {
+	grid-column: 2 / 3;
+	grid-row: 3 / 4;
+	background-color: var(--color-enemy3-bg);
+	border-radius: 8px;
+	padding: var(--padding-cell);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow-x: auto;
+  }
+  
+  /* Maximální šířky nepřátelských buněk */
+  #enemy1-cell.enemy-cell,
+  #enemy2-cell.enemy-cell,
+  #enemy3-cell.enemy-cell {
+	width: var(--max-width-cells);
+  }
+  
+  .player-cell--main {
+	background-color: var(--color-player-bg);
+	width: var(--max-width-cells);
+  }
+  
+  /* Ruky (container pro karty) */
+  .hand {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--gap-cards);
+	justify-content: center;
+	width: 100%;
+	padding: 1rem;
+	overflow-y: auto;
+  }
+  
+  /* Karty v rukách nepřátel */
+  .enemy-hand .card {
+	width: var(--card-width-enemy);
+	height: var(--card-height-enemy);
+	margin-right: -40px;
+	transform-origin: bottom left;
+	transform: rotate(-5deg); /* otáčíme kolem spodního levého rohu */
+	transition: transform 0.3s ease;
+  }
+  
+  /* Karty hráče */
+  .player-hand .card {
+	width: var(--card-width-player);
+	height: var(--card-height-player);
+  }
+  
+  /* Karty obecně */
+  .card {
+	background: var(--color-card-bg);
+	border-radius: var(--border-radius-card);
+	box-shadow: 0 4px 6px rgb(0 0 0 / 0.1);
+	color: var(--color-card-text);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: 700;
+	font-size: 1.3rem;
+	cursor: pointer;
+	user-select: none;
+	transition: transform 0.3s ease;
+	position: relative;
+	perspective: 1000px;
+  }
+  
+  .card.flipped {
+	background-color: var(--color-card-bg);
+	color: var(--color-card-text);
+  }
+  
+  .card:hover {
+	transform: translateY(-5px) scale(1.03);
+  }
+  
+  .card.dealt {
+	animation: dealAnim 0.35s ease forwards;
+  }
+  
+  .card-clone {
+	position: fixed;
+	z-index: 9999;
+	pointer-events: none;
+	border-radius: var(--border-radius-card);
+	box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+	background: var(--color-card-bg);
+	color: var(--color-card-text);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: 700;
+	font-size: 1.3rem;
+	transition: transform 0.8s ease, opacity 0.8s ease;
+  }
+  .card-img{
+	width: 100%;
+	height: 100%;
+	border-radius: var(--border-radius-card);
+  }
+  @keyframes dealAnim {
+	0% {
+	  transform: translateY(-100px) scale(0);
+	  opacity: 0;
+	}
+	100% {
+	  transform: translateY(0) scale(1);
+	  opacity: 1;
+	}
+  }
+  
+  /* Animace chvění (chyba při pokusu o nepovolenou akci) */
+  .shake {
+	animation: shakeAnim 0.5s;
+  }
+  
+  @keyframes shakeAnim {
+	0%, 100% { transform: translateX(0); }
+	20%, 60% { transform: translateX(-8px); }
+	40%, 80% { transform: translateX(8px); }
+  }
+  
+  /* Stavové zprávy */
+  .game-state.info {
+	color: var(--color-info);
+  }
+  .game-state.error {
+	padding: 2rem;
+	margin: 0 10rem;
+	color: var(--color-text);
+	background-color: var(--color-error);
+	font-weight: 700;
+	animation: shakeAnim 0.5s;
+  }
+  .game-state.success {
+	padding: 2rem;
+	margin: 0 10rem;
+	color: var(--color-text);
+	background-color: var(--color-success);
+	font-weight: 700;
+  }
+  
+  /* Responzivita */
+  @media (max-width: 700px) {
+	#app {
+	  width: 100%;
+	  padding: 10px;
+	}
+	.board-grid {
+	  width: 100%;
+	  height: auto;
+	}
+	.deck, .discard {
+	  flex: 1 1 auto;
+	  height: 150px;
+	}
+	#hands {
+	  flex-direction: column;
+	}
+	#player-cell {
+	  width: 100%;
+	  grid-column: auto !important;
+	  grid-row: auto !important;
+	}
+	.hand {
+	  justify-content: flex-start;
+	  overflow-x: hidden;
+	  max-height: none;
+	}
+  }
+  
+  #intro-screen {
+	background: linear-gradient(135deg, #3ca46e, #256742);
+	padding: 2.5rem 3rem;
+	border-radius: 16px;
+	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+	
+	max-width: 90vw;
+	color: #fff;
+	text-align: center;
+  
+	animation: fadeInScale 0.5s ease forwards;
+  }
+  
+  #intro-screen h1 {
+	font-size: 2.3rem;
+	margin-bottom: 2rem;
+	font-weight: 800;
+	letter-spacing: 0.06em;
+	text-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
+  }
+  
+  #intro-screen label {
+	display: block;
+	margin-top: 1.4rem;
+	margin-bottom: 0.5rem;
+	font-weight: 600;
+	font-size: 1rem;
+	text-align: left;
+	text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
+  
+  #intro-screen select {
+	width: 100%;
+	padding: 0.5rem 0.8rem;
+	border-radius: 10px;
+	border: none;
+	font-size: 1rem;
+	background: rgba(255 255 255 / 0.15);
+	color: #fff;
+	box-shadow: inset 0 0 6px rgba(255 255 255 / 0.25);
+	cursor: pointer;
+	transition: background-color 0.3s ease, box-shadow 0.3s ease;
+	outline-offset: 2px;
+  }
+  
+  #intro-screen select:hover,
+  #intro-screen select:focus {
+	background: rgba(255 255 255 / 0.3);
+	box-shadow: inset 0 0 8px rgba(255 255 255 / 0.4);
+	outline: none;
+  }
+  
+  #intro-start-game.button {
+	margin-top: 2.5rem;
+	background: #ffd166;
+	color: #256742;
+	font-weight: 700;
+	font-size: 1.3rem;
+	padding: 0.7rem 2rem;
+	border-radius: 14px;
+	box-shadow: 0 6px 14px rgba(255 209 102 / 0.7);
+	transition: 
+	  background-color 0.3s ease,
+	  box-shadow 0.3s ease,
+	  transform 0.2s ease;
+	user-select: none;
+	text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  }
+  
+  #intro-start-game.button:hover {
+	background: #f4a261;
+	box-shadow: 0 8px 20px rgba(244 162 97 / 0.9);
+	transform: translateY(-3px);
+  }
+  
+  #intro-start-game.button:active {
+	transform: translateY(0);
+	box-shadow: 0 4px 12px rgba(244 162 97 / 0.7);
+  }
+  .container-intro{
+	max-width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+  }
+  /* Animace */
+  @keyframes fadeInScale {
+	0% {
+	  opacity: 0;
+	  transform: scale(0.85);
+	}
+	100% {
+	  opacity: 1;
+	  transform: scale(1);
+	}
+  }
