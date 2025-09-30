@@ -33,6 +33,7 @@ The project was organized as a year-long collaboration between two classes:
 ## Purpose
 This project is a **simple card game prototype** created as a showcase for an **asset pack designed by students**.  
 It serves as both a presentation of their work and as an example of how graphic assets can be brought into a small game project.
+
 ---
 
 ## Future Development
