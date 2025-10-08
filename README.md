@@ -1,6 +1,6 @@
 # Prší – Card Game Prototype
 
-https://pavelk0nrad.github.io/prszi/
+https://pavel-konrad.github.io/prszi/
 
 This repository contains a **school project from 2024**, developed in collaboration with students of the Graphic Art School Hellichova in Prague.  
 The goal was to demonstrate how 2D assets can be prepared by graphic artists and implemented into a working web game.
