@@ -1,0 +1,88 @@
+/* ==========================================================================
+   CSS Variables / Design Tokens
+   ========================================================================== */
+
+:root {
+  /* Colors - Primary */
+  --color-bg: #2e8b57;
+  --color-bg-gradient-start: #3ca46e;
+  --color-bg-gradient-end: #256742;
+  --color-text: white;
+  --color-text-dark: #222;
+
+  /* Colors - Buttons */
+  --color-button-bg: #373737;
+  --color-button-bg-hover: #256b43;
+  --color-button-primary: #ffd166;
+  --color-button-primary-hover: #ffca3a;
+  --color-button-primary-text: #256742;
+
+  /* Colors - Settings Panel */
+  --color-settings-bg: #fff;
+  --color-settings-text: #222;
+  --color-settings-border: #ccc;
+
+  /* Colors - Players */
+  --color-player-bg: #d4edda;
+  --color-enemy1-bg: transparent;
+  --color-enemy2-bg: transparent;
+  --color-enemy3-bg: transparent;
+
+  /* Colors - State */
+  --color-error: #f44336;
+  --color-success: #4caf50;
+  --color-info: #ddd;
+
+  /* Colors - Cards */
+  --color-card-bg: white;
+  --color-card-text: black;
+  --color-card-special-border: gold;
+  --color-suit-red: #e53935;
+  --color-suit-black: #212121;
+
+  /* Typography */
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-family-settings: Arial, sans-serif;
+
+  /* Border Radius */
+  --border-radius: 0.5rem;
+  --border-radius-card: 10px;
+  --border-radius-button: 12px;
+  --border-radius-panel: 16px;
+
+  /* Spacing */
+  --padding-button-vertical: 0.7rem;
+  --padding-button-horizontal: 2rem;
+  --padding-settings-panel: 20px;
+  --padding-cell: 10px;
+  --gap-main: 1rem;
+  --gap-cards: 8px;
+
+  /* Card Sizes */
+  --card-width-player: 100px;
+  --card-height-player: 140px;
+  --card-width-enemy: 70px;
+  --card-height-enemy: 100px;
+
+  /* Layout */
+  --max-width-cells: 500px;
+
+  /* Shadows */
+  --shadow-card: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-card-hover: 0 6px 12px rgba(0, 0, 0, 0.2);
+  --shadow-panel: 0 12px 30px rgba(0, 0, 0, 0.45);
+  --shadow-button: 0 6px 14px rgba(255, 209, 102, 0.7);
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+
+  /* Z-Index Scale */
+  --z-cards: 1;
+  --z-ui: 100;
+  --z-overlay: 2000;
+  --z-modal: 10000;
+  --z-modal-top: 20000;
+}
+

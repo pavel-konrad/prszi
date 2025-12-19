@@ -1,0 +1,81 @@
+/* ==========================================================================
+   Settings Overlay
+   ========================================================================== */
+
+#settings-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--color-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: var(--z-modal);
+}
+
+#settings-overlay.hidden {
+  display: none;
+}
+
+/* ==========================================================================
+   Settings Panel
+   ========================================================================== */
+
+#settings-panel {
+  background: var(--color-settings-bg);
+  color: var(--color-settings-text);
+  border-radius: 8px;
+  padding: var(--padding-settings-panel);
+  width: 320px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  font-family: var(--font-family-settings);
+}
+
+#settings-panel h2 {
+  margin-top: 0;
+}
+
+#settings-panel label {
+  margin-top: var(--gap-main);
+  font-weight: 600;
+  display: block;
+  color: var(--color-settings-text);
+  text-shadow: none;
+}
+
+#settings-panel select,
+#settings-panel input[type="range"] {
+  width: 100%;
+  margin-top: 0.3rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid var(--color-settings-border);
+  font-size: 1rem;
+}
+
+#settings-panel button {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: var(--padding-button-vertical) 1rem;
+  background-color: var(--color-button-bg);
+  color: var(--color-text);
+  border: none;
+  border-radius: var(--border-radius);
+  font-weight: 700;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color var(--transition-normal);
+  box-shadow: none;
+  transform: none;
+}
+
+#settings-panel button:hover,
+#settings-panel button:focus {
+  background-color: var(--color-button-bg-hover);
+  outline: none;
+  transform: none;
+  box-shadow: none;
+}
+

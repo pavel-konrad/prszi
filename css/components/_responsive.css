@@ -1,0 +1,47 @@
+/* ==========================================================================
+   Responsive / Media Queries
+   ========================================================================== */
+
+@media (max-width: 700px) {
+  #app {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .board-grid {
+    width: 100%;
+    height: auto;
+  }
+
+  .deck,
+  .discard {
+    flex: 1 1 auto;
+    height: 150px;
+  }
+
+  #hands {
+    flex-direction: column;
+  }
+
+  #player-cell {
+    width: 100%;
+    grid-column: auto !important;
+    grid-row: auto !important;
+  }
+
+  .hand {
+    justify-content: flex-start;
+    overflow-x: hidden;
+    max-height: none;
+  }
+
+  .game-state.error,
+  .game-state.success {
+    margin: 0 1rem;
+  }
+
+  .container-intro {
+    max-width: 90%;
+  }
+}
+

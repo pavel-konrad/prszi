@@ -6,59 +6,111 @@
   <title>Czech Card Game – Prszi</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
-<body>
-	<div id="intro-screen" role="dialog" aria-modal="true" aria-labelledby="intro-title" tabindex="-1">
-		<div class="container-intro">
-		  <h1 id="intro-title">Welcome</h1>
-	  
+<body data-controller="intro game settings"
+      data-action="intro:started->game#start game:ended->intro#show">
 
-	  
-		  <label for="intro-deck-select">Select card deck:</label>
-		  <select id="intro-deck-select" aria-describedby="deck-desc">
-			<option value="standard" selected>Adam Briza Pack</option>
-			
-		  </select>
-		  <p id="deck-desc" class="sr-only">Choose which deck of cards to use in the game.</p>
-	  
-		  <button id="intro-start-game" class="button">Start Game</button>
-	  
-		  <section id="game-info" aria-label="Game rules and history" tabindex="0">
-			<h2>Rules and History of the Czech Card Game Prší</h2>
-			<p>
-			  Prší is a traditional Czech card game played with a 32-card deck. The game involves players trying to get rid of all their cards by matching the suit or rank of the top card on the discard pile. Special cards allow players to skip opponents, reverse the play order, or force opponents to draw extra cards.
-			</p>
-			<p>
-			 This project is a <strong>simple card game</strong> created as a showcase for an <strong>asset pack</strong> designed by students from an art school.  
-It serves as a presentation of their work and as inspiration for how graphic assets can be used in a small game.
-			</p>
-		  </section>
-		</div>
-	  </div>
-	  
-  <a href="#" id="exit-game" class="button">Exit Game</a>
-  <a href="#" id="settings-button" class="button">⚙️ Settings</a>
+  <!-- Intro Screen -->
+  <div id="intro-screen" 
+       data-intro-target="screen"
+       role="dialog" 
+       aria-modal="true" 
+       aria-labelledby="intro-title" 
+       tabindex="-1">
+    <div class="container-intro">
+      <h1 id="intro-title">Welcome</h1>
 
-  <div id="settings-overlay" class="hidden" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+      <label for="intro-deck-select">Select card deck:</label>
+      <select id="intro-deck-select" 
+              data-intro-target="deckSelect"
+              aria-describedby="deck-desc">
+        <option value="standard" selected>Adam Briza Pack</option>
+      </select>
+      <p id="deck-desc" class="sr-only">Choose which deck of cards to use in the game.</p>
+
+      <button id="intro-start-game" 
+              class="button"
+              data-action="intro#start">
+        Start Game
+      </button>
+
+      <section id="game-info" aria-label="Game rules and history" tabindex="0">
+        <h2>Rules and History of the Czech Card Game Prší</h2>
+        <p>
+          Prší is a traditional Czech card game played with a 32-card deck. The game involves players trying to get rid of all their cards by matching the suit or rank of the top card on the discard pile. Special cards allow players to skip opponents, reverse the play order, or force opponents to draw extra cards.
+        </p>
+        <p>
+          This project is a <strong>simple card game</strong> created as a showcase for an <strong>asset pack</strong> designed by students from an art school.  
+          It serves as a presentation of their work and as inspiration for how graphic assets can be used in a small game.
+        </p>
+      </section>
+    </div>
+  </div>
+
+  <!-- Game Controls -->
+  <a href="#" 
+     id="exit-game" 
+     class="button"
+     data-action="game#exit">
+    Exit Game
+  </a>
+  
+  <a href="#" 
+     id="settings-button" 
+     class="button"
+     data-action="settings#open">
+    ⚙️ Settings
+  </a>
+
+  <!-- Settings Overlay -->
+  <div id="settings-overlay" 
+       class="hidden" 
+       data-settings-target="overlay"
+       role="dialog" 
+       aria-modal="true" 
+       aria-labelledby="settings-title">
     <div id="settings-panel">
       <h2 id="settings-title">Settings</h2>
 
       <label for="volume-range">Volume:</label>
-      <input type="range" id="volume-range" min="0" max="1" step="0.01" />
+      <input type="range" 
+             id="volume-range" 
+             min="0" 
+             max="1" 
+             step="0.01"
+             data-settings-target="volumeRange"
+             data-action="input->settings#setVolume" />
 
-
-      <button id="mute-toggle" class="button">Mute</button>
-      <button id="close-settings" class="button">Close</button>
+      <button id="mute-toggle" 
+              class="button"
+              data-settings-target="muteButton"
+              data-action="settings#toggleMute">
+        Mute
+      </button>
+      
+      <button id="close-settings" 
+              class="button"
+              data-action="settings#close">
+        Close
+      </button>
     </div>
   </div>
 
+  <!-- Main Game Area -->
   <main id="app">
-
-
     <section id="board">
       <div class="top-row" role="region" aria-live="polite" aria-label="Game status and decks">
-        <div id="deck" class="deck">Draw Deck</div>
+        <div id="deck" 
+             class="deck"
+             data-game-target="deck"
+             data-action="click->game#drawCard">
+          Draw Deck
+        </div>
         <div id="discard-pile" class="discard">Discard Pile</div>
-        <div id="game-state" class="game-state">Loading...</div>
+        <div id="game-state" 
+             class="game-state"
+             data-game-target="state">
+          Loading...
+        </div>
       </div>
 
       <section id="hands">
@@ -85,7 +137,6 @@ It serves as a presentation of their work and as inspiration for how graphic ass
     </section>
   </main>
 
-  <script type="module" src="js/script.js"></script>
-  <script src="js/menu.js" defer></script>
+  <script type="module" src="js/app.js"></script>
 </body>
 </html>

@@ -1,0 +1,90 @@
+/* ==========================================================================
+   Cards
+   ========================================================================== */
+
+.card {
+  background: var(--color-card-bg);
+  border-radius: var(--border-radius-card);
+  box-shadow: var(--shadow-card);
+  color: var(--color-card-text);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 1.3rem;
+  cursor: pointer;
+  user-select: none;
+  transition: transform var(--transition-normal);
+  position: relative;
+  perspective: 1000px;
+}
+
+.card:hover {
+  transform: translateY(-5px) scale(1.03);
+}
+
+.card.flipped {
+  background-color: var(--color-card-bg);
+  color: var(--color-card-text);
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--border-radius-card);
+}
+
+/* ==========================================================================
+   Special Cards
+   ========================================================================== */
+
+.card.special-card {
+  box-shadow: var(--shadow-card), 0 0 0 2px var(--color-card-special-border);
+}
+
+.card.special-card:hover {
+  box-shadow: var(--shadow-card-hover), 0 0 0 3px var(--color-card-special-border);
+}
+
+/* ==========================================================================
+   Card Clone (Animation)
+   ========================================================================== */
+
+.card-clone {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  border-radius: var(--border-radius-card);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  background: var(--color-card-bg);
+  color: var(--color-card-text);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 1.3rem;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+/* ==========================================================================
+   Player Hand Cards
+   ========================================================================== */
+
+.player-hand .card {
+  width: var(--card-width-player);
+  height: var(--card-height-player);
+}
+
+/* ==========================================================================
+   Enemy Hand Cards
+   ========================================================================== */
+
+.enemy-hand .card {
+  width: var(--card-width-enemy);
+  height: var(--card-height-enemy);
+  margin-right: -40px;
+  transform-origin: bottom left;
+  transform: rotate(-5deg);
+  transition: transform var(--transition-normal);
+}
+

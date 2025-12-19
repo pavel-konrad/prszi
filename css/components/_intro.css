@@ -1,0 +1,107 @@
+/* ==========================================================================
+   Intro Screen
+   ========================================================================== */
+
+#intro-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--color-bg-gradient-start), var(--color-bg-gradient-end));
+  padding: 2.5rem 3rem;
+  border-radius: var(--border-radius-panel);
+  box-shadow: var(--shadow-panel);
+  max-width: 90vw;
+  color: #fff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: var(--z-overlay);
+  gap: var(--gap-main);
+  animation: fadeInScale var(--transition-slow) ease forwards;
+}
+
+#intro-screen h1 {
+  font-size: 2.3rem;
+  margin-bottom: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
+}
+
+#intro-screen label {
+  display: block;
+  margin-top: 1.4rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: left;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+#intro-screen select {
+  width: 100%;
+  padding: 0.5rem 0.8rem;
+  border-radius: 10px;
+  border: none;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  transition: background-color var(--transition-normal), box-shadow var(--transition-normal);
+  outline-offset: 2px;
+}
+
+#intro-screen select:hover,
+#intro-screen select:focus {
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.4);
+  outline: none;
+}
+
+/* ==========================================================================
+   Intro Start Button
+   ========================================================================== */
+
+#intro-start-game.button {
+  margin-top: 2.5rem;
+  background: var(--color-button-primary);
+  color: var(--color-button-primary-text);
+  font-weight: 700;
+  font-size: 1.3rem;
+  padding: 0.7rem 2rem;
+  border-radius: 14px;
+  box-shadow: var(--shadow-button);
+  transition: 
+    background-color var(--transition-normal),
+    box-shadow var(--transition-normal),
+    transform var(--transition-fast);
+  user-select: none;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+#intro-start-game.button:hover {
+  background: #f4a261;
+  box-shadow: 0 8px 20px rgba(244, 162, 97, 0.9);
+  transform: translateY(-3px);
+}
+
+#intro-start-game.button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(244, 162, 97, 0.7);
+}
+
+/* ==========================================================================
+   Intro Container
+   ========================================================================== */
+
+.container-intro {
+  max-width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+

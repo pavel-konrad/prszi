@@ -1,0 +1,59 @@
+/* ==========================================================================
+   Animations / Keyframes
+   ========================================================================== */
+
+/* Card Deal Animation */
+.card.dealt {
+  animation: dealAnim 0.35s ease forwards;
+}
+
+@keyframes dealAnim {
+  0% {
+    transform: translateY(-100px) scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Shake Animation (Error) */
+.shake {
+  animation: shakeAnim var(--transition-slow);
+}
+
+@keyframes shakeAnim {
+  0%, 100% { 
+    transform: translateX(0); 
+  }
+  20%, 60% { 
+    transform: translateX(-8px); 
+  }
+  40%, 80% { 
+    transform: translateX(8px); 
+  }
+}
+
+/* Fade In */
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+  }
+  to { 
+    opacity: 1; 
+  }
+}
+
+/* Fade In with Scale */
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+

@@ -1,0 +1,89 @@
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+/* Base button element */
+button {
+  width: 100%;
+  padding: 0.55rem 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: var(--border-radius-button);
+  border: none;
+  cursor: pointer;
+  user-select: none;
+  background-color: var(--color-button-primary);
+  color: var(--color-button-primary-text);
+  box-shadow: var(--shadow-button);
+  margin-top: 1.6rem;
+  transition: 
+    background-color var(--transition-normal),
+    box-shadow var(--transition-normal),
+    transform var(--transition-fast);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+button:hover,
+button:focus {
+  background-color: var(--color-button-primary-hover);
+  box-shadow: 0 8px 18px rgba(255, 202, 58, 0.9);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(255, 202, 58, 0.7);
+}
+
+/* .button class - for links styled as buttons */
+.button {
+  background-color: var(--color-button-bg);
+  color: var(--color-text);
+  border: none;
+  border-radius: var(--border-radius);
+  padding: var(--padding-button-vertical) var(--padding-button-horizontal);
+  font-size: 1.2rem;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  user-select: none;
+  transition: background-color var(--transition-normal);
+}
+
+.button:hover,
+.button:focus {
+  background-color: var(--color-button-bg-hover);
+  outline: none;
+}
+
+/* ==========================================================================
+   Fixed UI Buttons (Exit, Settings)
+   ========================================================================== */
+
+#exit-game,
+#settings-button {
+  position: fixed;
+  right: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color var(--transition-normal);
+  z-index: var(--z-modal);
+}
+
+#exit-game {
+  top: 70px;
+}
+
+#settings-button {
+  top: 10px;
+}
+
+#exit-game:hover,
+#exit-game:focus,
+#settings-button:hover,
+#settings-button:focus {
+  background-color: var(--color-button-bg-hover);
+  outline: none;
+}
+

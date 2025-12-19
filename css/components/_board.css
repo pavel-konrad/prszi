@@ -1,0 +1,177 @@
+/* ==========================================================================
+   Game Board Layout
+   ========================================================================== */
+
+#app {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+#board {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-main);
+}
+
+/* ==========================================================================
+   Top Row (Deck, Discard, State)
+   ========================================================================== */
+
+.top-row {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.deck,
+.discard {
+  flex: 0 0 150px;
+  height: 200px;
+  padding: 1.5rem;
+  background: linear-gradient(180deg, #fff, #eee);
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  color: #000;
+  user-select: none;
+  cursor: pointer;
+  transition: box-shadow var(--transition-normal);
+}
+
+.deck:hover,
+.deck:focus,
+.discard:hover,
+.discard:focus {
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4);
+  outline: none;
+}
+
+/* ==========================================================================
+   Game State Display
+   ========================================================================== */
+
+.game-state {
+  flex-grow: 1;
+  font-weight: bold;
+  color: var(--color-text);
+  user-select: none;
+  text-align: center;
+}
+
+.game-state.info {
+  color: var(--color-info);
+}
+
+.game-state.error {
+  padding: 2rem;
+  margin: 0 10rem;
+  color: var(--color-text);
+  background-color: var(--color-error);
+  font-weight: 700;
+  animation: shakeAnim 0.5s;
+}
+
+.game-state.success {
+  padding: 2rem;
+  margin: 0 10rem;
+  color: var(--color-text);
+  background-color: var(--color-success);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   Hands Grid Layout
+   ========================================================================== */
+
+#hands {
+  display: flex;
+  justify-content: center;
+}
+
+.board-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 10px;
+  user-select: none;
+}
+
+/* ==========================================================================
+   Player Cells
+   ========================================================================== */
+
+#player-cell {
+  grid-column: 1 / 2;
+  grid-row: 1 / 4;
+  background-color: var(--color-player-bg);
+  border-radius: 8px;
+  padding: var(--padding-cell);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: var(--gap-cards);
+}
+
+.player-cell--main {
+  background-color: var(--color-player-bg);
+  width: var(--max-width-cells);
+}
+
+/* ==========================================================================
+   Enemy Cells
+   ========================================================================== */
+
+#enemy1-cell,
+#enemy2-cell,
+#enemy3-cell {
+  grid-column: 2 / 3;
+  border-radius: 8px;
+  padding: var(--padding-cell);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: auto;
+}
+
+#enemy1-cell {
+  grid-row: 1 / 2;
+  background-color: var(--color-enemy1-bg);
+}
+
+#enemy2-cell {
+  grid-row: 2 / 3;
+  background-color: var(--color-enemy2-bg);
+}
+
+#enemy3-cell {
+  grid-row: 3 / 4;
+  background-color: var(--color-enemy3-bg);
+}
+
+#enemy1-cell.enemy-cell,
+#enemy2-cell.enemy-cell,
+#enemy3-cell.enemy-cell {
+  width: var(--max-width-cells);
+}
+
+/* ==========================================================================
+   Hand Container
+   ========================================================================== */
+
+.hand {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-cards);
+  justify-content: center;
+  width: 100%;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
