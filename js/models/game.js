@@ -131,7 +131,7 @@ export class Game {
     this.showState(message, 'success');
     
     setTimeout(() => {
-      window.dispatchEvent(new CustomEvent('game:ended'));
+      window.dispatchEvent(new CustomEvent('prsi:game:finished'));
     }, 2000);
   }
 }

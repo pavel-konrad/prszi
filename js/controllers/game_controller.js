@@ -9,17 +9,17 @@ export class GameController extends BaseController {
   connect() {
     super.connect();
     this.game = null;
-    this._boundGameEnded = this._onGameEnded.bind(this);
-    window.addEventListener('game:ended', this._boundGameEnded);
+    this._boundGameFinished = this._onGameFinished.bind(this);
+    window.addEventListener('prsi:game:finished', this._boundGameFinished);
   }
 
   disconnect() {
-    window.removeEventListener('game:ended', this._boundGameEnded);
+    window.removeEventListener('prsi:game:finished', this._boundGameFinished);
   }
 
-  _onGameEnded() {
+  _onGameFinished() {
     this.game = null;
-    // Use Stimulus dispatch instead of emit to avoid recursion
+    // Dispatch Stimulus event for intro controller
     this.dispatch('ended', { bubbles: true });
   }
 
