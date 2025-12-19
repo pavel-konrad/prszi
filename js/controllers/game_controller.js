@@ -9,8 +9,18 @@ export class GameController extends BaseController {
   connect() {
     super.connect();
     this.game = null;
-    
-    window.addEventListener('game:ended', () => this.handleGameEnded());
+    this._boundGameEnded = this._onGameEnded.bind(this);
+    window.addEventListener('game:ended', this._boundGameEnded);
+  }
+
+  disconnect() {
+    window.removeEventListener('game:ended', this._boundGameEnded);
+  }
+
+  _onGameEnded() {
+    this.game = null;
+    // Use Stimulus dispatch instead of emit to avoid recursion
+    this.dispatch('ended', { bubbles: true });
   }
 
   start(event) {
@@ -24,7 +34,6 @@ export class GameController extends BaseController {
       onStateChange: (message, type) => this.updateState(message, type)
     });
     
-    // Connect deck click to human player
     if (this.hasDeckTarget) {
       this.deckTarget.onclick = () => this.drawCard();
     }
@@ -36,7 +45,6 @@ export class GameController extends BaseController {
     if (!this.game) return;
     if (this.game.currentPlayerIndex !== 0) return;
     
-    // Delegate to human player
     const human = this.game.humanPlayer;
     if (human && human.onDrawCard) {
       human.onDrawCard();
@@ -49,25 +57,18 @@ export class GameController extends BaseController {
     const el = this.stateTarget;
     el.textContent = message;
     
-    // Remove all state classes and add the new one
     el.classList.remove('error', 'success', 'info');
-    this.addClass(el, type);
+    el.classList.add(type);
     
-    // Trigger animation on error
     if (type === 'error') {
       el.style.animation = 'none';
-      el.offsetHeight; // Force reflow
+      el.offsetHeight;
       el.style.animation = null;
     }
   }
 
-  handleGameEnded() {
-    this.game = null;
-    this.emit('ended');
-  }
-
   exit() {
     this.game = null;
-    this.emit('ended');
+    this.dispatch('ended', { bubbles: true });
   }
 }
