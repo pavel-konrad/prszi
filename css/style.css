@@ -2,7 +2,10 @@
    Main Stylesheet
    
    Imports all component stylesheets in the correct order.
-   Similar to SCSS structure but using native CSS @import.
+   Uses native CSS @import (no build step needed).
+   
+   Note: Requires .nojekyll file in repo root for GitHub Pages
+         to serve files starting with underscore (_).
    ========================================================================== */
 
 /* 1. Variables / Design Tokens */

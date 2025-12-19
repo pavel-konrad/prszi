@@ -11,18 +11,25 @@ export class IntroController extends BaseController {
   }
 
   showIntro() {
-    this.show(this.screenTarget);
-    this.hide(this.$global('#exit-game'));
+    if (this.hasScreenTarget) {
+      this.screenTarget.style.display = 'block';
+    }
+    
+    const exitBtn = this.$global('#exit-game');
+    if (exitBtn) exitBtn.style.display = 'none';
+    
     this.clearGameAreas();
   }
 
-  show() {
-    // Called when game ends
+  // Called by game:ended event - renamed to avoid conflict with BaseController.show()
+  showScreen() {
     this.showIntro();
   }
 
   hideIntro() {
-    this.hide(this.hasScreenTarget ? this.screenTarget : null);
+    if (this.hasScreenTarget) {
+      this.screenTarget.style.display = 'none';
+    }
     
     const exitBtn = this.$global('#exit-game');
     if (exitBtn) exitBtn.style.display = 'inline-block';
